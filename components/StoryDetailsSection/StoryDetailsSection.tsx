@@ -7,7 +7,7 @@ import { Story } from '@/types/story';
 import toast from 'react-hot-toast';
 import Button from '@/components/Button/Button';
 import Image from 'next/image';
-import css from './StoryDetailsSection.module.css';
+import css from './StoryDetails.Section.module.css';
 
 interface StoryDetailsProps {
   storyId: string;
