@@ -1,0 +1,53 @@
+import styles from './page.module.css';
+import Block from '../../components/Block/Block';
+import PopularStoriesSection from '@/components/PopularStoriesSection/PopularStoriesSection';
+import Join from '../../components/Join/Join';
+import Hero from '@/components/Hero/Hero';
+import About from '@/components/About/About';
+
+import {
+  QueryClient,
+  HydrationBoundary,
+  dehydrate,
+} from '@tanstack/react-query';
+import { getStories } from '@/lib/api/clientApi';
+import { getUsers } from '@/lib/api/serverApi';
+import OurTravellers from '@/components/OurTravellers/OurTravellers';
+import MainWrapper from '@/components/MainWrapper/MainWrapper';
+
+export default async function Home() {
+  const queryClient = new QueryClient();
+
+  // PopularStoriesSection prefetch
+  await queryClient.prefetchQuery({
+    queryKey: [
+      'popularStories',
+      { page: 1, perPage: 4, sort: 'popular', category: null },
+    ],
+    queryFn: () => getStories(1, 4, 'popular'),
+  });
+
+  // getUsers prefetch
+  await queryClient.prefetchQuery({
+    queryKey: ['users'],
+    queryFn: () => getUsers({ page: 1, perPage: 4 }),
+  });
+
+  return (
+    <MainWrapper>
+      <main className={styles.main}>
+        <Hero />
+        <About />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <PopularStoriesSection />
+        </HydrationBoundary>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Block title="Наші Мандрівники">
+            <OurTravellers />
+          </Block>
+        </HydrationBoundary>
+        <Join />
+      </main>
+    </MainWrapper>
+  );
+}

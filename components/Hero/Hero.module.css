@@ -60,8 +60,8 @@
         padding-top: 244px;
         padding-bottom: 117px;
 
-        background-image: image-set(url('/images/header/header_tabl@1x.webp') 1x,
-                url('/images/header/header_tabl@2x.webp') 2x);
+        background-image: image-set(url('/images/header/header_tab@1x.webp') 1x,
+                url('/images/header/header_tab@2x.webp') 2x);
     }
 
     .title {

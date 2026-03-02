@@ -1,32 +1,45 @@
-/* Header */
+/* Header Base Geometry */
 .header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    background: transparent;
     z-index: 10;
+    width: 100%;
     height: 72px;
+    background: transparent;
     padding: 0 16px;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Container */
 .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    max-width: 375px;
     height: 100%;
-    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-/* Logo */
+/* Logo Base */
 .logoLink {
     display: flex;
     align-items: center;
     gap: 6px;
     text-decoration: none;
-    color: #ffffff;
     font-weight: 600;
     font-size: 15px;
     cursor: pointer;
@@ -48,12 +61,10 @@
     font-size: 17px;
     line-height: 1.1;
     letter-spacing: -0.01em;
-    color: #ffffff;
-    display: inline;
     white-space: nowrap;
 }
 
-/* Desktop Nav */
+/* Navigation Base */
 .desktopNav {
     display: none;
 }
@@ -67,68 +78,25 @@
 
 .navigationLink {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 17px;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 18px;
     padding: 10px 6px;
-    cursor: pointer;
     transition: color 0.2s ease;
 }
 
-.navigationLink:hover {
-    color: #7a96ea;
-}
-
-.navigationLink:active {
-    color: #4c4c4c;
-}
-
-/* Tablet Actions */
+/* Actions Base */
 .tabletActions {
     display: none;
     align-items: center;
     gap: 12px;
 }
 
-.publishButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    gap: 8px;
-    border: 1px solid #fff;
-    border-radius: 8px;
-    padding-block: 4px;
-    padding-inline: 10px;
-    width: 182px;
-    height: 32px;
-    background: #fff;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.publishButton:hover {
-    border: 1px solid #fff;
-    background: #7f7f7f;
-    color: #ffffff;
-}
-
-.publishButton:active {
-    border: 1px solid #7f7f7f;
-    background: #4c4c4c;
-}
-
-/* Burger Buttons */
+/* Burger Base */
 .burgerIcon {
     width: 24px;
     height: 24px;
-    fill: #ffffff;
     display: block;
+    transition: fill 0.3s ease;
 }
 
 .burgerButton {
@@ -136,13 +104,12 @@
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0);
+    border: none;
     border-radius: 8px;
     padding: 4px;
     width: 32px;
     height: 32px;
     cursor: pointer;
-    color: #ffffff;
     transition: opacity 0.2s ease;
 }
 
@@ -150,19 +117,17 @@
     opacity: 0.8;
 }
 
-/* Mobile Burger */
 .mobileBurger {
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0);
+    border: none;
     border-radius: 8px;
     padding: 4px;
     width: 32px;
     height: 32px;
     cursor: pointer;
-    color: #ffffff;
     transition: opacity 0.2s ease;
 }
 
@@ -170,40 +135,105 @@
     opacity: 0.8;
 }
 
-/* Mobile 375px+ */
-@media (min-width: 375px) {
-    .container {
-        max-width: 375px;
-    }
-
-    .header {
-        padding: 0 20px;
-    }
-
-    .logoLink {
-        gap: 8px;
-        font-size: 16px;
-    }
-
-    .logoIcon {
-        width: 23px;
-        height: 23px;
-    }
-
-    .burgerIcon {
-        width: 24px;
-        height: 24px;
-    }
+/* ========== VARIANT: TRANSPARENT (Main Page) ========== */
+.header.transparent {
+    background: transparent;
 }
 
-/* Tablet 768px+ */
+.header.transparent::after {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Text & Icons White */
+.header.transparent .logoLink,
+.header.transparent .logoText {
+    color: #ffffff;
+}
+
+.header.transparent .navigationLink {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.header.transparent .navigationLink:hover,
+.header.transparent .navigationLink:focus {
+    color: var(--accent, #6366f1) !important;
+}
+
+.header.transparent .burgerIcon {
+    fill: #ffffff;
+}
+
+/* Buttons White (variant="") */
+.header.transparent .desktopPublishButton,
+.header.transparent .publishButton {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    padding: 10px 12px !important;
+}
+
+.header.transparent .desktopPublishButton:hover,
+.header.transparent .publishButton:hover {
+    background-color: var(--accent, #6366f1) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+/* ========== VARIANT: SOLID (Inner Pages) ========== */
+.header.solid {
+    background: #ffffff;
+}
+
+.header.solid::after {
+    display: none;
+}
+
+/* Text & Icons Black */
+.header.solid .logoLink,
+.header.solid .logoText {
+    color: #000000;
+}
+
+.header.solid .navigationLink {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.header.solid .navigationLink:hover {
+    color: var(--accent, #6366f1);
+}
+
+.header.solid .burgerIcon {
+    fill: #000000;
+}
+
+/* Buttons Primary (variant="primary") */
+.header.solid .desktopPublishButton,
+.header.solid .publishButton {
+    background-color: var(--accent, #6366f1) !important;
+    color: #ffffff !important;
+    border-color: var(--accent, #6366f1) !important;
+    padding: 10px 12px !important;
+}
+
+.header.solid .desktopPublishButton:hover,
+.header.solid .publishButton:hover {
+    background-color: var(--accent-light, #818cf8) !important;
+    color: #000000 !important;
+    border: 1px solid #4169e1;
+}
+
+/* ========== MEDIA QUERIES (Geometry Only) ========== */
 @media (min-width: 768px) {
-    .container {
-        max-width: 768px;
+    .tabletActions {
+        display: flex;
     }
 
-    .header {
-        padding: 0 32px;
+    .burgerButton {
+        display: flex;
+    }
+
+    .mobileBurger {
+        display: none;
     }
 
     .logoLink {
@@ -215,52 +245,17 @@
         height: 26px;
     }
 
-    .burgerIcon {
-        width: 26px;
-        height: 26px;
+    /* Tablet Burger Background Logic */
+    .header.transparent .burgerButton {
+        background: rgba(255, 255, 255, 0.1);
     }
 
-    .tabletActions {
-        display: flex;
-    }
-
-    .publishButton {
-        display: block;
-    }
-
-    .burgerButton {
-        display: flex;
-    }
-
-    .mobileBurger {
-        display: none;
+    .header.solid .burgerButton {
+        background: rgba(0, 0, 0, 0.05);
     }
 }
 
-/* Desktop 1440px+ */
 @media (min-width: 1440px) {
-    .container {
-        max-width: 1440px;
-    }
-
-    .header {
-        padding: 0 64px;
-    }
-
-    .logoLink {
-        font-size: 18px;
-    }
-
-    .logoIcon {
-        width: 28px;
-        height: 28px;
-    }
-
-    .burgerIcon {
-        width: 28px;
-        height: 28px;
-    }
-
     .desktopNav {
         display: flex;
         align-items: center;
@@ -277,5 +272,14 @@
     .burgerButton,
     .mobileBurger {
         display: none;
+    }
+
+    .logoLink {
+        font-size: 18px;
+    }
+
+    .logoIcon {
+        width: 28px;
+        height: 28px;
     }
 }

@@ -6,7 +6,8 @@ export type Story={
     category:Category;
     ownerId: {
           _id: string;
-          name: string;
+        name: string;
+        avatarUrl: string;
     };
     date:string;
     favoriteCount: number;

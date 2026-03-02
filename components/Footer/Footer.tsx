@@ -1,16 +1,27 @@
+'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
+import { useAuthStore } from '@/lib/store/authStore';
 
 export default function Footer() {
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.top}>
             <Link href="/" className={styles.logo} aria-label="Подорожники">
-              <span className={styles.logoIcon} aria-hidden="true">
-                🌿
-              </span>
+              <Image
+                src="/logo.svg"
+                alt="Подорожники"
+                width={30}
+                height={30}
+                className={styles.logoIcon}
+                priority
+              />
               <span className={styles.logoText}>Подорожники</span>
             </Link>
 
@@ -24,7 +35,11 @@ export default function Footer() {
                     className={styles.socialLink}
                     aria-label="Facebook"
                   >
-                    <svg className={styles.socialIcon} aria-hidden="true" viewBox="0 0 32 32">
+                    <svg
+                      className={styles.socialIcon}
+                      aria-hidden="true"
+                      viewBox="0 0 32 32"
+                    >
                       <use href="/sprite.svg#icon-Facebook" />
                     </svg>
                   </a>
@@ -38,7 +53,11 @@ export default function Footer() {
                     className={styles.socialLink}
                     aria-label="Instagram"
                   >
-                    <svg className={styles.socialIcon} aria-hidden="true" viewBox="0 0 32 32">
+                    <svg
+                      className={styles.socialIcon}
+                      aria-hidden="true"
+                      viewBox="0 0 32 32"
+                    >
                       <use href="/sprite.svg#icon-Instagram" />
                     </svg>
                   </a>
@@ -52,7 +71,11 @@ export default function Footer() {
                     className={styles.socialLink}
                     aria-label="X"
                   >
-                    <svg className={styles.socialIcon} aria-hidden="true" viewBox="0 0 32 32">
+                    <svg
+                      className={styles.socialIcon}
+                      aria-hidden="true"
+                      viewBox="0 0 32 32"
+                    >
                       <use href="/sprite.svg#icon-X" />
                     </svg>
                   </a>
@@ -66,7 +89,11 @@ export default function Footer() {
                     className={styles.socialLink}
                     aria-label="YouTube"
                   >
-                    <svg className={styles.socialIcon} aria-hidden="true" viewBox="0 0 32 32">
+                    <svg
+                      className={styles.socialIcon}
+                      aria-hidden="true"
+                      viewBox="0 0 32 32"
+                    >
                       <use href="/sprite.svg#icon-Youtube" />
                     </svg>
                   </a>
@@ -91,11 +118,13 @@ export default function Footer() {
                     Мандрівники
                   </Link>
                 </li>
-                <li>
-                  <Link href="/profile" className={styles.navLink}>
-                    Профіль
-                  </Link>
-                </li>
+                {!isAuthenticated && (
+                  <li>
+                    <Link href="/profile" className={styles.navLink}>
+                      Профіль
+                    </Link>
+                  </li>
+                )}
               </ul>
             </nav>
           </div>
@@ -103,7 +132,7 @@ export default function Footer() {
           <div className={styles.divider} />
 
           <p className={styles.copyright}>
-            © 2025 Подорожники. Усі права захищені.
+            © {year} Подорожники. Усі права захищені.
           </p>
         </div>
       </div>
