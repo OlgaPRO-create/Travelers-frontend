@@ -1,21 +1,23 @@
 .join {
-    padding-bottom: 32px;
     padding-top: 32px;
 }
 
 .join_image_container {
     background-color: #e8eeff;
     border-radius: 24px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2)), url(../../public/images/join/join_mob@1x.webp);
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.2)),
+        url(../../public/images/join/join_mob@1x.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 
     @media screen and (min-resolution: 2x) {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.2)), url(../../public/images/join/join_mob@2x.webp)
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.2)),
+            url(../../public/images/join/join_mob@2x.webp);
     }
 }
-
 
 .join_content_container {
     padding: 20px;
@@ -44,14 +46,17 @@
 @media screen and (min-width: 768px) {
     .join {
         padding-top: 32px;
-        padding-bottom: 32px;
     }
 
     .join_image_container {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.2)), url(../../public/images/join/join_tabl@1x.webp);
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.2)),
+            url(../../public/images/join/join_tabl@1x.webp);
 
         @media screen and (min-resolution: 2x) {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.2)), url(../../public/images/join/join_tabl@2x.webp)
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.2)),
+                url(../../public/images/join/join_tabl@2x.webp);
         }
     }
 
@@ -79,14 +84,17 @@
 @media screen and (min-width: 1440) {
     .join {
         padding-top: 48px;
-        padding-bottom: 48px;
     }
 
     .join_image_container {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.2)), url(../../public/images/join/join_desk@1x.webp);
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.2)),
+            url(../../public/images/join/join_desk@1x.webp);
 
         @media screen and (min-resolution: 2x) {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.2)), url(../../public/images/join/join_desk@2x.webp)
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.2)),
+                url(../../public/images/join/join_desk@2x.webp);
         }
     }
 

@@ -8,7 +8,7 @@ import Button from '@/components/Button/Button';
 import { useState, useEffect } from 'react';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
-
+// import useAFetchPaginatedQuery from '@/hooks/useFetchPaginatedQuery';
 
 export default function TravellersPageClient() {
   const [initialLimit, setInitialLimit] = useState<number>(8);
@@ -58,7 +58,6 @@ export default function TravellersPageClient() {
       };
     },
   });
-
 
   const users = data?.users ?? [];
   const hasUsers = users.length > 0;
