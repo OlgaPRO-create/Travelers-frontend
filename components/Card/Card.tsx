@@ -13,7 +13,7 @@ export default function Card({ user }: Props) {
     <div className={css.card}>
       <Image
         src={user.avatarUrl}
-        alt={user.name}
+        alt={user.name || "User avatar"}
         className={css.photo}
         width={112}
         height={112}

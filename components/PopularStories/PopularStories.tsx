@@ -1,4 +1,4 @@
-import TravellersStoriesItem from '../TravellersStoriesItem/TravellersStoriesItem';
+import TravellersStoriesItem from '../TravelersStoriesItem/TravelersStoriesItem';
 import { Story } from '@/types/story';
 import css from './PopularStories.module.css';
 
@@ -7,7 +7,7 @@ interface PopularStoriesProps {
   mobileCount?: number;
 }
 
-function PopularStories({ stories, mobileCount =3 }: PopularStoriesProps) {
+function PopularStories({ stories, mobileCount = 3 }: PopularStoriesProps) {
   return (
     <ul className={css.list}>
       {stories.map((story, index) => {
@@ -19,10 +19,10 @@ function PopularStories({ stories, mobileCount =3 }: PopularStoriesProps) {
           <TravellersStoriesItem
             key={story._id}
             story={story}
-            className={classes.join('')}
-            />
-      );
-     })}
+            className={classes.join(' ')}
+          />
+        );
+      })}
     </ul>
   );
 }

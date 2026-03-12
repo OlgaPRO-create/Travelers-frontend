@@ -1,25 +1,20 @@
 import axios from 'axios';
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! використовується у тих, хто ще робить запити напряму на наш бекенд !!
-// const baseURL = 'http://localhost:3000/api';
+// const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // export const nextServer = axios.create({
-export const api = axios.create({
-  baseURL: baseURL,
-  // withCredentials: true,
-});
+// export const api = axios.create({
+//   baseURL: baseURL,
+// withCredentials: true,
+// });
 
-// axios Next Server !!!! Використовують ті, що переробляє через Next Server !!!!!!!!!!!!!!
-const baseURLT = process.env.NEXT_PUBLIC_SERVER_URL + '/api';
-
+// const baseURLT = process.env.NEXT_PUBLIC_SERVER_URL + '/api';
+const baseURLT = process.env.NEXT_PUBLIC_SERVER_URL;
 export const nextServer = axios.create({
   baseURL: baseURLT,
   withCredentials: true,
 });
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 import { Story, Category } from '@/types/story';
 

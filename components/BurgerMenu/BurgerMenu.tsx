@@ -94,7 +94,9 @@ export default function BurgerMenu({ onCloseAction }: BurgerMenuProps) {
               <li>
                 <Link
                   href="/"
-                  className={`${css.navigationLink} ${pathname === '/' ? css.active : ''}`}
+                  className={`${css.navigationLink} ${
+                    pathname === '/' ? css.active : ''
+                  }`}
                   onClick={handleNavClick}
                 >
                   Головна
@@ -103,7 +105,9 @@ export default function BurgerMenu({ onCloseAction }: BurgerMenuProps) {
               <li>
                 <Link
                   href="/stories"
-                  className={`${css.navigationLink} ${pathname === '/stories' ? css.active : ''}`}
+                  className={`${css.navigationLink} ${
+                    pathname === '/stories' ? css.active : ''
+                  }`}
                   onClick={handleNavClick}
                 >
                   Історії
@@ -112,7 +116,9 @@ export default function BurgerMenu({ onCloseAction }: BurgerMenuProps) {
               <li>
                 <Link
                   href="/travellers"
-                  className={`${css.navigationLink} ${pathname === '/travellers' ? css.active : ''}`}
+                  className={`${css.navigationLink} ${
+                    pathname === '/travellers' ? css.active : ''
+                  }`}
                   onClick={handleNavClick}
                 >
                   Мандрівники
@@ -122,8 +128,10 @@ export default function BurgerMenu({ onCloseAction }: BurgerMenuProps) {
               {isAuthenticated && (
                 <li>
                   <Link
-                    href="/profile"
-                    className={`${css.navigationLink} ${pathname === '/profile' ? css.active : ''}`}
+                    href="/profile/saved"
+                    className={`${css.navigationLink} ${
+                      pathname === '/profile' ? css.active : ''
+                    }`}
                     onClick={handleNavClick}
                   >
                     Мій Профіль

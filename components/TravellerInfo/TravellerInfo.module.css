@@ -1,6 +1,5 @@
 .travellerInfo {
     padding-top: 32px;
-    margin-top: 72px;
 }
 
 .travellerInfo_content {
@@ -14,7 +13,6 @@
 .photo {
     border-radius: 50%;
 }
-
 
 .travellerInfo_about {
     display: flex;
@@ -34,7 +32,6 @@
     line-height: 1.5;
     text-align: center;
 }
-
 
 @media screen and (min-width: 768px) {
     .travellerInfo_about {

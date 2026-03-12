@@ -20,7 +20,7 @@ function PopularStoriesSection({ mobileCount = 3 }: { mobileCount?: number }) {
         ? 4
         : 3;
 
-  console.log(storiesNumber);
+  // console.log(storiesNumber);
   //
 
   const { data, isLoading, isError } = useQuery({
@@ -28,7 +28,7 @@ function PopularStoriesSection({ mobileCount = 3 }: { mobileCount?: number }) {
       'popularStories',
       { page: 1, perPage: 4, sort: 'popular', category: null },
     ],
-    queryFn: () => getStories(1, 4, 'popular'),
+    queryFn: () => getStories({ page: 1, perPage: 4, sort: 'popular' }),
     refetchOnMount: false,
   });
 

@@ -38,6 +38,13 @@
     line-height: 150%;
 }
 
+.loaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
 .imageWrapper {
     position: relative;
     width: 100%;
@@ -166,6 +173,7 @@
 
     .saveBlock {
         margin-top: 0;
+        max-height: fit-content;
     }
 
     .saveTitle {
@@ -175,4 +183,4 @@
     .saveText {
         font-size: 18px;
     }
-}
+}  

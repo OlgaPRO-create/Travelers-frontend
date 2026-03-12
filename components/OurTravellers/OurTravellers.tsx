@@ -3,12 +3,10 @@
 import Button from '../Button/Button';
 import { getUsers } from '@/lib/api/clientApi';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import TravellersList from '../TravellersList/TravellersList';
+import TravelersList from '../TravelersList/TravelersList';
 import css from './OurTravellers.module.css';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-
-
 
 export default function OurTravellers() {
   const {
@@ -28,7 +26,7 @@ export default function OurTravellers() {
     <>
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {users && users?.length > 0 && <TravellersList users={users} />}
+      {users && users?.length > 0 && <TravelersList users={users} />}
 
       <div className={css.btnWrapper}>
         <Button

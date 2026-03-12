@@ -3,12 +3,11 @@
 import css from './TravellersPage.module.css';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getUsers } from '@/lib/api/clientApi';
-import TravellersList from '@/components/TravellersList/TravellersList';
+import TravelersList from '@/components/TravelersList/TravelersList';
 import Button from '@/components/Button/Button';
 import { useState, useEffect } from 'react';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
-// import useAFetchPaginatedQuery from '@/hooks/useFetchPaginatedQuery';
 
 export default function TravellersPageClient() {
   const [initialLimit, setInitialLimit] = useState<number>(8);
@@ -57,6 +56,8 @@ export default function TravellersPageClient() {
         users: data.pages.flatMap((page) => page.users),
       };
     },
+    refetchOnMount: false,
+    staleTime: 5 * 60 * 1000, // 5 хвилин
   });
 
   const users = data?.users ?? [];
@@ -69,9 +70,8 @@ export default function TravellersPageClient() {
           <h2 className={`center ${css.title}`}>Мандрівники</h2>
         </div>
         {isLoading && <Loader />}
+        {hasUsers && <TravelersList users={users} />}
         {isError && <ErrorMessage />}
-        {hasUsers && <TravellersList users={users} />}
-
         <div className={css.btnWrapper}>
           {hasNextPage && (
             <Button

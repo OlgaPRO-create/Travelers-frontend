@@ -12,6 +12,12 @@
   --accent-dark: #1a2a5a;
   --mainFontFamily: var(--font-nunito-sans), sans-serif;
   --soraFontFamily: var(--font-sora), sans-serif;
+  --interFontFamily: var(--font-inter), sans-serif;
+  --hero-height: 72px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -55,7 +61,7 @@ h5,
 h6 {
   margin: 0;
   font-weight: 700;
-  font-family: var(--soraFontFamily);
+  font-family: var(--interFontFamily);
 }
 
 h2 {

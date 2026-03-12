@@ -1,47 +1,48 @@
 import { nextServer } from './api';
-import { Category, Story } from '@/types/story';
+import {
+  Story,
+  SavedStory,
+  UserSavedArticlesResponse,
+  SavedStoriesResponse,
+  GetSavedStoriesProps,
+} from '@/types/story';
 import { User } from '@/types/user';
+import {
+  CategoriesResponse,
+  getStoriesProps,
+  StoryListResponse,
+  Category,
+} from '@/types/story';
 
-export type StoryListResponse = {
-  page: number;
-  perPage: number;
-  totalStories: number;
-  totalPages: number;
-  stories: Story[];
-};
+// getStories with pagination, sorting and filtering by category
 
-export const getStories = async (
-  page?: number,
-  perPage?: number,
-  sort?: 'newest' | 'popular',
-  category?: Category
-) => {
+export async function getStories({
+  page,
+  perPage,
+  sort,
+  category,
+  nextPerPage,
+}: getStoriesProps): Promise<StoryListResponse> {
   const res = await nextServer.get<StoryListResponse>('/stories', {
     params: {
       page,
       perPage,
       sort,
       category,
+      nextPerPage,
     },
   });
   return res.data;
-};
+}
 
 export const getStory = async (storyId: string) => {
   const res = await nextServer.get<Story>(`/stories/${storyId}`);
   return res.data;
 };
 
-export const saveStory = async (storyId: string) => {
-  const res = await nextServer.post(`/stories/${storyId}/favoriteCount`);
-  return res.data;
-};
-
 // fetch list of categories (used in create / edit story forms)
 export const getCategories = async (): Promise<Category[]> => {
-  const res = await nextServer.get<{ categories: Category[] }>(
-    '/categories'
-  );
+  const res = await nextServer.get<{ categories: Category[] }>('/categories');
   return res.data.categories;
 };
 
@@ -124,6 +125,21 @@ export async function getUsers({
   return response.data;
 }
 
+export const getCategoriesT = async (): Promise<CategoriesResponse> => {
+  const response = await nextServer.get<CategoriesResponse>('/categories');
+  return response.data;
+};
+
+export const fetchSavedStoriesByUserId = async (
+  userId: string
+): Promise<SavedStory[]> => {
+  const res = await nextServer.get<UserSavedArticlesResponse>(
+    `/users/${userId}/saved`
+  );
+
+  return res.data.data.savedStories;
+};
+
 // Add story to saved
 interface addStoryToSavedResponse {
   savedArticles: User['savedArticles'];
@@ -135,7 +151,7 @@ export const addStoryToSaved = async (
   const response = await nextServer.post<addStoryToSavedResponse>(
     `/stories/${storyId}/saved`
   );
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 };
 
@@ -150,7 +166,7 @@ export const removeStoryFromSaved = async (
   const response = await nextServer.delete<removeStoryFromSavedResponse>(
     `/stories/${storyId}/saved`
   );
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 };
 
@@ -165,7 +181,53 @@ export interface GetUserResponse {
   };
 }
 
-export async function getUserById(id: User['_id']) {
-  const { data } = await nextServer.get<GetUserResponse>(`/users/${id}`);
+export async function getUserById(
+  id: User['_id'],
+  page?: number,
+  perPage?: number
+) {
+  const { data } = await nextServer.get<GetUserResponse>(`/users/${id}`, {
+    params: {
+      page,
+      perPage,
+    },
+  });
   return data;
 }
+
+// getOwnStories (private)
+
+export interface GetOwnStoriesResponse {
+  page: number;
+  perPage: number;
+  totalStories: number;
+  totalPages: number;
+  stories: Story[];
+}
+
+export const getOwnStories = async (page?: number, perPage?: number) => {
+  const { data } = await nextServer.get<GetOwnStoriesResponse>(`/stories/my`, {
+    params: {
+      page,
+      perPage,
+    },
+  });
+
+  return data;
+};
+
+export const getSavedStories = async ({
+  page = 1,
+  perPage = 6,
+}: GetSavedStoriesProps) => {
+  const { data } = await nextServer.get<SavedStoriesResponse>(
+    '/stories/saved',
+    {
+      params: {
+        page,
+        perPage,
+      },
+    }
+  );
+  return data;
+};
