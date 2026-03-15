@@ -51,9 +51,17 @@ type CheckSessionRequest = {
   success: boolean;
 };
 
+// export const checkSession = async () => {
+//   const res = await nextServer.post<CheckSessionRequest>('/auth/refresh');
+//   return res.data.success;
+// };
 export const checkSession = async () => {
-  const res = await nextServer.post<CheckSessionRequest>('/auth/refresh');
-  return res.data.success;
+  try {
+    const res = await nextServer.post<CheckSessionRequest>('/auth/refresh');
+    return res.data.success;
+  } catch {
+    return false;
+  }
 };
 
 // get me

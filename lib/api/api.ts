@@ -9,11 +9,14 @@ import axios from 'axios';
 // });
 
 // const baseURLT = process.env.NEXT_PUBLIC_SERVER_URL + '/api';
+
 const baseURLT = process.env.NEXT_PUBLIC_SERVER_URL;
 export const nextServer = axios.create({
   baseURL: baseURLT,
   withCredentials: true,
+  
 });
+
 
 
 import { Story, Category } from '@/types/story';
@@ -51,4 +54,5 @@ export async function updateStory(
 export async function getCategories(): Promise<Category[]> {
   const res = await nextServer.get<{ categories: Category[] }>('/categories');
   return res.data.categories;
+
 }
