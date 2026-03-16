@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Nunito_Sans, Sora, Inter } from 'next/font/google';
-import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import TanStackProvider from '@/components/TanStackProvider';
 import './globals.css';
 import AuthProvider from '@/components/auth/AuthProvider/AuthProvider';
 import { Toaster } from 'sonner';
